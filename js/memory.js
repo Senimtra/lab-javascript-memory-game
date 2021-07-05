@@ -11,16 +11,31 @@ class MemoryGame {
     this.pairsGuessed = 0;
   }
 
+  /*
+  ######################################
+  ## Iteration 2.2: The class methods ##
+  ###################################### */
+
   shuffleCards() {
-    // ... write your code here
+    // Durstenfeld (Fisher-Yates) - Shuffle
+    for (let i = this.cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
+    }
   }
 
   checkIfPair(card1, card2) {
-    // ... write your code here
+    this.pairsClicked++;
+    if (card1 === card2) {
+      this.pairsGuessed++;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   checkIfFinished() {
-    // ... write your code here
+    return (this.pairsGuessed < this.cards.length / 2) ? false : true;
   }
 }
 
